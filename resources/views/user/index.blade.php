@@ -16,12 +16,14 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Role</th>
                                 <th>Action</th>
                             </tr>
                             @foreach($users as $user)
                                 <tr>
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
+                                    <td>{{$user->roles->pluck('name')}}</td>
                                     <td><a href="{{ route('users.edit', $user->id) }}" class="btn">Edit</a></td>
                                 </tr>
                             @endforeach

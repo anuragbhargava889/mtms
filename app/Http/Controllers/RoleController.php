@@ -63,7 +63,7 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('role.edit', ['role' => Role::find($id)]);
     }
 
     /**

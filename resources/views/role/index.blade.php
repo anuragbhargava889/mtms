@@ -21,7 +21,7 @@
                                 <tr>
                                     <td>{{$role->name}}</td>
                                     <td>{{$role->description}}</td>
-                                    <td></td>
+                                    <td><a href="{{ route('roles.edit', $role->id) }}" class="btn">Edit</a></td>
                                 </tr>
                             @endforeach
                         </table>
