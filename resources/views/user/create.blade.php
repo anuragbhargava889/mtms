@@ -20,7 +20,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Add User</div>
                     <div class="panel-body">
-                        {!! Form::open(['route' => 'users.store']) !!}
+                        {!! Form::open(['autocomplete' => 'off', 'route' => 'users.store']) !!}
                         <div class="form-group">
                             {!! Form::label('name', 'Uuser Name') !!}
                             {!! Form::text('name', null, ['class' => 'form-control']) !!}

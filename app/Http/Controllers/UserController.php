@@ -49,8 +49,8 @@ class UserController extends Controller
         ]);
 
         $user = new User();
-        $user->name= $request->Input(['name']);
-        $user->email=$request->Input(['email']);
+        $user->name = $request->Input(['name']);
+        $user->email = $request->Input(['email']);
         $user->password = bcrypt($request->Input(['password']));
         $user->save();
         $user->roles()->attach($request->Input(['role']));
@@ -93,7 +93,21 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        print_r($id); die();
+        $this->validate($request, [
+            'name' => "required|unique:users,name,".$id,
+            'email' => 'required|unique:users,email,'.$id,
+        ]);
+
+        $user = User::find($id);
+        $user->name = $request->Input(['name']);
+        $user->email = $request->Input(['email']);
+        if(!empty($request->Input(['password']))) {
+            $user->password = bcrypt($request->Input(['password']));
+        }
+        $user->save();
+        $user->detachRoles($user->roles);
+        $user->roles()->attach($request->Input(['role']));
+        return redirect('users');
     }
 
     /**

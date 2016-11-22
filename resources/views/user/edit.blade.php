@@ -20,7 +20,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Edit User</div>
                     <div class="panel-body">
-                        {!! Form::model($user, ['method' => 'put', 'route' => ['users.update', $user]]) !!}
+                        {!! Form::model($user, ['method' => 'put', 'route' => ['users.update', $user], 'autocomplete' => 'off']) !!}
                         <div class="form-group">
                             {!! Form::label('name', 'Uuser Name') !!}
                             {!! Form::text('name', null, ['class' => 'form-control']) !!}
@@ -35,7 +35,7 @@
                         </div>
                         <div class="form-group">
                             {!! Form::label('role', 'Role') !!}
-                            {!! Form::select('role', $roles, $user->roles, ['class' => 'form-control', 'required' => true]) !!}
+                            {!! Form::select('role', $roles, $user->roles->pluck('id')->first(), ['class' => 'form-control', 'required' => true]) !!}
                         </div>
                         {!! Form::submit('Submit', ['class' => 'btn btn-default']) !!}
                         {!! Form::close() !!}
