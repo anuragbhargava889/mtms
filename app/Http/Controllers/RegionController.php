@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Region;
 
 class RegionController extends Controller
 {
@@ -13,7 +14,7 @@ class RegionController extends Controller
      */
     public function index()
     {
-        //
+        return view('region.index', ['regions' => Region::all()]);
     }
 
     /**
@@ -23,7 +24,7 @@ class RegionController extends Controller
      */
     public function create()
     {
-        //
+        return view('region.create');
     }
 
     /**

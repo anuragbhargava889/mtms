@@ -30,7 +30,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('role.create');
     }
 
     /**
@@ -41,7 +41,18 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => "required",
+            'display_name' => 'required',
+            'description' => 'required',
+        ]);
+
+        $role = new Role();
+        $role->name = $request->Input(['name']);
+        $role->display_name = $request->Input(['display_name']);
+        $role->description = $request->Input(['description']);
+        $role->save();
+        return redirect('roles');
     }
 
     /**

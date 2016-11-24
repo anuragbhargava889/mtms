@@ -9,20 +9,20 @@
             </div>
             <div class="col-md-9">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Role Listing</div>
+                    <div class="panel-heading">Region Listing</div>
                     <div class="panel-body">
-                        <a href="{{ route('roles.create') }}" class="btn btn-info">Add New Role</a><br><br>
+                        <a href="{{ route('regions.create') }}" class="btn btn-info">Add New Region</a><br><br>
                         <table class="table table-bordered table-responsive">
                             <tr>
-                                <th>Role Name</th>
-                                <th>Description</th>
+                                <th>Region Name</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
-                            @foreach($roles as $role)
+                            @foreach($regions as $region)
                                 <tr>
-                                    <td>{{$role->name}}</td>
-                                    <td>{{$role->description}}</td>
-                                    <td><a href="{{ route('roles.edit', $role->id) }}" class="btn">Edit</a></td>
+                                    <td>{{$region->name}}</td>
+                                    <td>{{$region->description}}</td>
+                                    <td><a href="{{ route('regions.edit', $region->id) }}" class="btn">Edit</a></td>
                                 </tr>
                             @endforeach
                         </table>
