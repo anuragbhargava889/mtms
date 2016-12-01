@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
+use App\Region;
 
 class UserController extends Controller
 {
     function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('role:admin');
+        //$this->middleware('role:admin');
     }
 
     /**
@@ -31,7 +32,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create', ['roles' => Role::pluck('name', 'id')]);
+        return view('user.create', ['roles' => Role::pluck('name', 'id'), 'regions' => Region::pluck('name', 'id')]);
     }
 
     /**
@@ -78,7 +79,12 @@ class UserController extends Controller
     {
         try {
             $user = User::findOrFail($id);
-            return view('user.edit', ['user' => $user, 'roles' => Role::pluck('name', 'id')]);
+            $selectedRegion = !empty($user->region->id) ? $user->region->id : null;
+            return view('user.edit', ['user' => $user,
+                'roles' => Role::pluck('name', 'id'),
+                'regions' => Region::pluck('name', 'id'),
+                'selectedRegion' => $selectedRegion
+            ]);
         } catch (\Exception $e) {
             print $e->getMessage();
         }
@@ -94,16 +100,17 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => "required|unique:users,name,".$id,
-            'email' => 'required|unique:users,email,'.$id,
+            'name' => "required|unique:users,name," . $id,
+            'email' => 'required|unique:users,email,' . $id,
         ]);
 
         $user = User::find($id);
         $user->name = $request->Input(['name']);
         $user->email = $request->Input(['email']);
-        if(!empty($request->Input(['password']))) {
+        if (!empty($request->Input(['password']))) {
             $user->password = bcrypt($request->Input(['password']));
         }
+        $user->region_id = $request->Input(['region']);
         $user->save();
         $user->detachRoles($user->roles);
         $user->roles()->attach($request->Input(['role']));

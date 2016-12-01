@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Region;
 
-class RegionController extends Controller
+class InspectionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +13,7 @@ class RegionController extends Controller
      */
     public function index()
     {
-        return view('region.index', ['regions' => Region::all()]);
+        //
     }
 
     /**
@@ -24,7 +23,7 @@ class RegionController extends Controller
      */
     public function create()
     {
-        return view('region.create');
+        //
     }
 
     /**
@@ -35,16 +34,7 @@ class RegionController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|unique:region',
-            'status' => 'required',
-        ]);
-
-        $region = new Region();
-        $region->name = $request->Input(['name']);
-        $region->status = $request->Input(['status']);
-        $region->save();
-        return redirect('regions');
+        //
     }
 
     /**
@@ -66,7 +56,7 @@ class RegionController extends Controller
      */
     public function edit($id)
     {
-        return view('region.edit', ['region' => Region::find($id)]);
+        //
     }
 
     /**
@@ -78,16 +68,7 @@ class RegionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name' => "required|unique:region,name,".$id,
-            'status' => 'required',
-        ]);
-
-        $region = Region::find($id);
-        $region->name = $request->Input(['name']);
-        $region->status = $request->Input(['status']);
-        $region->save();
-        return redirect('regions');
+        //
     }
 
     /**

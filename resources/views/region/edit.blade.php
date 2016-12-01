@@ -18,28 +18,16 @@
                     </div>
                 @endif
                 <div class="panel panel-default">
-                    <div class="panel-heading">Add User</div>
+                    <div class="panel-heading">Edit Region</div>
                     <div class="panel-body">
-                        {!! Form::open(['autocomplete' => 'off', 'route' => 'users.store']) !!}
+                        {!! Form::model($region, ['method' => 'put', 'autocomplete' => 'off','route' => ['regions.update', $region] ]) !!}
                         <div class="form-group">
-                            {!! Form::label('name', 'Uuser Name') !!}
+                            {!! Form::label('name', 'Region Name') !!}
                             {!! Form::text('name', null, ['class' => 'form-control']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('email', 'E-Mail Address') !!}
-                            {!! Form::text('email', null, ['class' => 'form-control']) !!}
-                        </div>
-                        <div class="form-group">
-                            {!! Form::label('password', 'Password') !!}
-                            {!! Form::password('password', ['class' => 'form-control']) !!}
-                        </div>
-                        <div class="form-group">
-                            {!! Form::label('role', 'Role') !!}
-                            {!! Form::select('role', $roles, null, ['class' => 'form-control']) !!}
-                        </div>
-                        <div class="form-group">
-                            {!! Form::label('region', 'Region') !!}
-                            {!! Form::select('region', $regions, null, ['class' => 'form-control']) !!}
+                            {!! Form::label('status', 'Status') !!}
+                            {!! Form::select('status', ['enable' => 'Enable', 'disable' => 'Disable'], null, ['class' => 'form-control']) !!}
                         </div>
                         {!! Form::submit('Submit', ['class' => 'btn btn-default']) !!}
                         {!! Form::close() !!}

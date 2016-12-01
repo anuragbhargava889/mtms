@@ -21,7 +21,7 @@
                             @foreach($regions as $region)
                                 <tr>
                                     <td>{{$region->name}}</td>
-                                    <td>{{$region->description}}</td>
+                                    <td>{{$region->status}}</td>
                                     <td><a href="{{ route('regions.edit', $region->id) }}" class="btn">Edit</a></td>
                                 </tr>
                             @endforeach

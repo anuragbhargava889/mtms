@@ -37,6 +37,10 @@
                             {!! Form::label('role', 'Role') !!}
                             {!! Form::select('role', $roles, $user->roles->pluck('id')->first(), ['class' => 'form-control', 'required' => true]) !!}
                         </div>
+                        <div class="form-group">
+                            {!! Form::label('region', 'Region') !!}
+                            {!! Form::select('region', $regions, $selectedRegion, ['class' => 'form-control', 'required' => true]) !!}
+                        </div>
                         {!! Form::submit('Submit', ['class' => 'btn btn-default']) !!}
                         {!! Form::close() !!}
                     </div>
