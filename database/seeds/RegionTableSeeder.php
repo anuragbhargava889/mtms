@@ -14,22 +14,22 @@ class RegionTableSeeder extends Seeder
     {
         $regionOne = new Region();
         $regionOne->name = 'East Gurgaon';
-        $regionOne->staus = 'enable';
+        $regionOne->status = 'enable';
         $regionOne->save();
 
         $regionTwo = new Region();
         $regionTwo->name = 'West Gurgaon';
-        $regionTwo->staus = 'enable';
+        $regionTwo->status = 'enable';
         $regionTwo->save();
 
         $regionThree = new Region();
         $regionThree->name = 'North Gurgaon';
-        $regionThree->staus = 'enable';
+        $regionThree->status = 'enable';
         $regionThree->save();
 
         $regionFour = new Region();
         $regionFour->name = 'South Gurgaon';
-        $regionFour->staus = 'enable';
+        $regionFour->status = 'enable';
         $regionFour->save();
     }
 }
