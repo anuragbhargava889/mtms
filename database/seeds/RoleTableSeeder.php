@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use App\Role;
-use App\User;
 
 class RoleTableSeeder extends Seeder
 {
@@ -13,19 +12,22 @@ class RoleTableSeeder extends Seeder
      */
     public function run()
     {
-        $owner = new Role();
-        $owner->name         = 'owner';
-        $owner->display_name = 'Project Owner'; // optional
-        $owner->description  = 'User is the owner of a given project'; // optional
-        $owner->save();
-
         $admin = new Role();
         $admin->name         = 'admin';
         $admin->display_name = 'User Administrator'; // optional
         $admin->description  = 'User is allowed to manage and edit other users'; // optional
         $admin->save();
 
-        $user = User::where('email', '=', 'anuragbhargava0609@gmail.com')->first();
-        $user->roles()->attach($admin->id);
+        $regionalmanager = new Role();
+        $regionalmanager->name         = 'regionalmanager';
+        $regionalmanager->display_name = 'Region Manager'; // optional
+        $regionalmanager->description  = 'User is to manage region'; // optional
+        $regionalmanager->save();
+
+        $localtechinician = new Role();
+        $localtechinician->name         = 'localtechinician';
+        $localtechinician->display_name = 'Local Technician'; // optional
+        $localtechinician->description  = 'This Group of User will fix the issues at tower'; // optional
+        $localtechinician->save();
     }
 }

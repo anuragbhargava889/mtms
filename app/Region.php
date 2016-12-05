@@ -23,4 +23,12 @@ class Region extends Model
     {
         return $this->hasMany('App\User');
     }
+
+    /**
+     * Get the tower for the region.
+     */
+    public function towers()
+    {
+        return $this->hasMany('App\Tower');
+    }
 }
