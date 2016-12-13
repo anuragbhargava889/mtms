@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tower extends Model
 {
+
     protected $table = 'tower';
 
     protected $fillable = ['name', 'region_id'];
@@ -15,6 +16,6 @@ class Tower extends Model
      */
     public function region()
     {
-        $this->belongsTo('App\Region');
+        return $this->belongsTo('App\Region');
     }
 }

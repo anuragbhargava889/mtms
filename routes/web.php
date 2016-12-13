@@ -18,3 +18,6 @@ Route::resource('users', 'UserController');
 Route::resource('regions', 'RegionController');
 Route::resource('inspections', 'InspectionController');
 Route::resource('towers', 'TowerController');
+Route::get('tokens', function(){
+    return view('token.index');
+});

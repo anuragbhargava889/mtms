@@ -3,9 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Region;
+use App\Tower;
+
+
 
 class TowerController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +22,7 @@ class TowerController extends Controller
      */
     public function index()
     {
-        //
+        return view('tower.index', array('towers' => Tower::paginate(10)));
     }
 
     /**
@@ -23,7 +32,7 @@ class TowerController extends Controller
      */
     public function create()
     {
-        //
+        return view('tower.create', ['region' => Region::pluck('name', 'id')]);
     }
 
     /**
@@ -34,7 +43,16 @@ class TowerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'region_id' => 'required',
+        ]);
+
+        $tower = new Tower();
+        $tower->name  = $request->input(['name']);
+        $tower->region_id = $request->input(['region_id']);
+        $tower->save();
+        return redirect('towers');
     }
 
     /**
