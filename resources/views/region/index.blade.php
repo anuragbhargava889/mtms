@@ -12,20 +12,7 @@
                     <div class="panel-heading">Region Listing</div>
                     <div class="panel-body">
                         <a href="{{ route('regions.create') }}" class="btn btn-info">Add New Region</a><br><br>
-                        <table class="table table-bordered table-responsive">
-                            <tr>
-                                <th>Region Name</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                            @foreach($regions as $region)
-                                <tr>
-                                    <td>{{$region->name}}</td>
-                                    <td>{{$region->status}}</td>
-                                    <td><a href="{{ route('regions.edit', $region->id) }}" class="btn">Edit</a></td>
-                                </tr>
-                            @endforeach
-                        </table>
+                        {!! $table->render() !!}
                     </div>
                 </div>
             </div>

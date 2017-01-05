@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Gbrock\Table\Facades\Table;
 use App\Region;
 
 class RegionController extends Controller
@@ -20,7 +21,13 @@ class RegionController extends Controller
      */
     public function index()
     {
-        return view('region.index', ['regions' => Region::all()]);
+        $region = Region::sorted()->paginate(10);
+        $table = Table::create($region, ['name', 'status']);
+        $table->setView('vendor.gbrock.table', ['class' => 'table table-striped table-hover']);
+        $table->addColumn('Action', 'Action', function($region) {
+            return '<a href="'.route('regions.edit', $region->id).'">Edit</a>';
+        });
+        return view('region.index', ['table' => $table]);
     }
 
     /**

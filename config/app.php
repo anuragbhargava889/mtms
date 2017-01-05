@@ -180,8 +180,10 @@ return [
         Zizaco\Entrust\EntrustServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
-        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class
-
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Gbrock\Table\Providers\TableServiceProvider::class,
+        Pyaesone17\ActiveState\ActiveStateServiceProvider::class,
     ],
 
     /*
@@ -232,7 +234,9 @@ return [
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'JWTAuth' => 'Tymon\JWTAuth\Facades\JWTAuth'
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'Table' => Gbrock\Table\Facades\Table::class,
+        'Active' => Pyaesone17\ActiveState\ActiveFacade::class,
     ],
 
 ];

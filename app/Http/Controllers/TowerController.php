@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Gbrock\Table\Facades\Table;
 use Illuminate\Http\Request;
 use App\Region;
 use App\Tower;
@@ -22,7 +23,13 @@ class TowerController extends Controller
      */
     public function index()
     {
-        return view('tower.index', array('towers' => Tower::paginate(10)));
+        $rows = Tower::sorted()->paginate(10);
+        $table = Table::create($rows, ['id', 'name']);
+        $table->setView('vendor.gbrock.table', ['class' => 'table table-striped table-hover']);
+        $table->addColumn('region_id', 'Region', function($rows) {
+            return !empty($rows->region->name) ? $rows->region->name : '';
+        });
+        return view('tower.index', array('table' => $table));
     }
 
     /**

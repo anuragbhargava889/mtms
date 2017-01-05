@@ -13,6 +13,4 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/user', function (Request $request) {
-    return response()->json(['msg' => 'test'], 200);
-});
+Route::post('/login', 'Service\AuthenticateController@authenticate');

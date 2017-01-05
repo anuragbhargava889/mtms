@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Inspection;
+use Gbrock\Table\Facades\Table;
+use Auth;
 
 class InspectionController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +21,13 @@ class InspectionController extends Controller
      */
     public function index()
     {
-        //
+        $region = Inspection::sorted()->paginate(10);
+        $table = Table::create($region, ['title', 'detail', 'region_id', 'manager_id', 'local_technician_id', 'status', 'start_date' , 'end_date']);
+        $table->setView('vendor.gbrock.table', ['class' => 'table table-striped table-hover']);
+        $table->addColumn('Action', 'Action', function($region) {
+            return '<a href="'.route('inspections.edit', $region->id).'">Edit</a>';
+        });
+        return view('inspections.index', ['table' => $table]);
     }
 
     /**
@@ -23,7 +37,7 @@ class InspectionController extends Controller
      */
     public function create()
     {
-        //
+       return view('inspections.create');
     }
 
     /**

@@ -12,22 +12,7 @@
                     <div class="panel-heading">User Listing</div>
                     <div class="panel-body">
                         <a href="{{ route('users.create') }}" class="btn btn-info">Add New User</a><br><br>
-                        <table class="table table-bordered table-responsive">
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Role</th>
-                                <th>Action</th>
-                            </tr>
-                            @foreach($users as $user)
-                                <tr>
-                                    <td>{{$user->name}}</td>
-                                    <td>{{$user->email}}</td>
-                                    <td>{{$user->roles->pluck('name')->first()}}</td>
-                                    <td><a href="{{ route('users.edit', $user->id) }}" class="btn">Edit</a></td>
-                                </tr>
-                            @endforeach
-                        </table>
+                        {!! $table->render() !!}
                     </div>
                 </div>
             </div>

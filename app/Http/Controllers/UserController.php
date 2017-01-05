@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Gbrock\Table\Facades\Table;
 use App\User;
 use App\Role;
 use App\Region;
@@ -22,7 +23,16 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.index', ['users' => User::all()]);
+        $user = User::sorted()->paginate(10);
+        $table = Table::create($user, ['name', 'email']);
+        $table->setView('vendor.gbrock.table', ['class' => 'table table-striped table-hover']);
+        $table->addColumn('Role', 'Role', function($user) {
+            return $user->roles->pluck('name')->first();
+        });
+        $table->addColumn('action', 'Action', function($user) {
+            return '<a href="'.route('users.edit', $user->id).'">Edit</a>';
+        });
+        return view('user.index', ['table' => $table]);
     }
 
     /**

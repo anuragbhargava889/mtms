@@ -9,9 +9,9 @@
             </div>
             <div class="col-md-9">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Role Listing</div>
+                    <div class="panel-heading">Region Listing</div>
                     <div class="panel-body">
-                        <a href="{{ route('roles.create') }}" class="btn btn-info">Add New Role</a><br><br>
+                        <a href="{{ route('inspections.create') }}" class="btn btn-info">Add New Region</a><br><br>
                         {!! $table->render() !!}
                     </div>
                 </div>

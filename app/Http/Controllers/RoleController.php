@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Role;
+use Gbrock\Table\Facades\Table;
 
 class RoleController extends Controller
 {
@@ -20,7 +21,13 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view('role.index', ['roles' => Role::all()]);
+        $role = Role::sorted()->paginate(10);
+        $table = Table::create($role, ['name', 'description']);
+        $table->setView('vendor.gbrock.table', ['class' => 'table table-striped table-hover']);
+        $table->addColumn('action', 'Action', function($role) {
+            return '<a href="'.route('roles.edit', $role->id).'">Edit</a>';
+        });
+        return view('role.index', ['table' => $table]);
     }
 
     /**
